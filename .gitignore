@@ -1,7 +1,6 @@
 generated/go/**/*.go
 generated/js/**/*.js
 generated/js/**/*.php
-protos/**/*.proto
 /node_modules/
 /vendor/
 script/bin

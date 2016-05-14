@@ -18,7 +18,7 @@ RUN apt-get -y update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install Go because ubuntu is lame
+# Install latest Golang
 RUN wget -q https://storage.googleapis.com/golang/$GOVERSION \
     && tar -C /usr/local -xzf $GOVERSION && rm $GOVERSION
 

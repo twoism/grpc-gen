@@ -20,13 +20,6 @@ done
 
 # Generates the protobufs for each package (and subpackage)
 for PKG in $( echo $PROTOS | xargs -n1 dirname | uniq | grep -v fixtures | grep -v plugins); do
-  protoc --vrpc_out=$PARAMS:$OUT -I. $PKG/*.proto
+  protoc --go_out=$PARAMS:$OUT -I. $PKG/*.proto
   echo "$(basename $PKG) -> $OUT$(basename $PKG)"
-done
-
-# Adds the code generation directive for greyhound for the urlvaluer & runs it
-PBS=$( find $OUT/* -name '*.pb.go' )
-for PB in $PBS; do
-  echo "//go:generate urlvaluer \$GOFILE" | cat - $PB > tmp_pb && mv tmp_pb $PB
-  go generate ./$PB
 done

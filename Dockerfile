@@ -43,7 +43,6 @@ RUN npm -qy install
 RUN ln -s $(which nodejs) /usr/local/bin/node
 
 # Go Deps
-ADD ./resources/netrc /root/.netrc
 ENV GODEPS github.com/golang/protobuf/proto \
   github.com/golang/protobuf/protoc-gen-go \
   golang.org/x/net/context \

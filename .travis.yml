@@ -13,6 +13,6 @@ branches:
     - master
 
 install:
-  - docker pull twoims/grpc-gen:latest
+  - docker pull christwoism/grpc-gen:latest
 script:
   - script/docker-generate

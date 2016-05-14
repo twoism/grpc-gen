@@ -21,4 +21,3 @@ This only needs to be done when there is a new gRPC version.
 ```bash
 script/build-image
 ```
-

@@ -6,4 +6,4 @@ set -e
 LOCAL_GEN="$(pwd)/generated"
 LOCAL_PROTOS="$(pwd)/protos"
 
-docker run -v $LOCAL_PROTOS:/grpc/protos -v $LOCAL_GEN:/grpc/generated -it christwoism/grpc-gen script/generate
+docker run -v $LOCAL_PROTOS:/grpc/protos -v $LOCAL_GEN:/grpc/generated -it christwoism/grpc-gen script/generate $@

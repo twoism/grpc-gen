@@ -2,6 +2,15 @@
 
 set -e
 
+if [ -z "$1" ]
+  then
+    echo "package name space must be supplied."
+    echo "script/docker-generate github.com/<some>/<repo>"
+    exit 1
+fi
+
+export PKG_PREFIX="$1/"
+
 cd $(dirname $0)/..
 
 [ "$(protoc --version)" = "libprotoc 3.0.0" ] || {

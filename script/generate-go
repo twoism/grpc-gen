@@ -5,10 +5,6 @@ set -e
 # relative path to place the generated code
 OUT="$GENERATED_PATH/go/"
 
-# the prefix applied in front of the imports for the
-# generated go files.
-PKG_PREFIX="github.com/vsco/protobufs/generated/go/"
-
 # Builds up the M* parameters for protoc to correctly namespace the
 # generated Go files when imported.
 PARAMS="plugins=grpc"

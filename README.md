@@ -10,7 +10,8 @@ Any `*.proto` file found in `protos` will be generated into its proper namespace
 On a machine with docker installed.
 
 ```bash
-./script/docker-generate
+# generate gRPC stubs for a given package
+./script/docker-generate github.com/<user>/<repo>
 ```
 
 ### Building a new protoc and gRPC image

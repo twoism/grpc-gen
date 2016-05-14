@@ -15,4 +15,4 @@ branches:
 install:
   - docker pull christwoism/grpc-gen:latest
 script:
-  - script/docker-generate
+  - script/docker-generate github.com/twoism/grpc-gen

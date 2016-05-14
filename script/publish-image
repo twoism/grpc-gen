@@ -2,5 +2,4 @@
 
 set -e
 
-docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.vsco.co
 docker push christwoism/grpc-gen:latest

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+pbjs $PROTOS -s proto -t commonjs -p . > $GENERATED_PATH/js/protos.pb.js

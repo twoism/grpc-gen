@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+GENDIR="$(pwd)/generated"
+PROTODIR="$(pwd)/protos"
+
+docker run -v $PROTODIR:/grpc/protos -v $GENDIR:/grpc/generated -it christwoism/grpc-gen /bin/bash

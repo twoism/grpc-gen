@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -e
+
+# relative path to place the generated code
+OUT="$GENERATED_PATH/go/"
+
+# the prefix applied in front of the imports for the
+# generated go files.
+PKG_PREFIX="github.com/vsco/protobufs/generated/go/"
+
+# Builds up the M* parameters for protoc to correctly namespace the
+# generated Go files when imported.
+PARAMS="plugins=grpc"
+for FILE in $PROTOS; do
+  FILE=${FILE#./}
+  PKG="$PKG_PREFIX$(dirname $FILE)"
+  PARAMS="$PARAMS,M$FILE=$PKG"
+done
+
+# Generates the protobufs for each package (and subpackage)
+for PKG in $( echo $PROTOS | xargs -n1 dirname | uniq | grep -v fixtures | grep -v plugins); do
+  protoc --vrpc_out=$PARAMS:$OUT -I. $PKG/*.proto
+  echo "$(basename $PKG) -> $OUT$(basename $PKG)"
+done
+
+# Adds the code generation directive for greyhound for the urlvaluer & runs it
+PBS=$( find $OUT/* -name '*.pb.go' )
+for PB in $PBS; do
+  echo "//go:generate urlvaluer \$GOFILE" | cat - $PB > tmp_pb && mv tmp_pb $PB
+  go generate ./$PB
+done

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+cd $(dirname $0)/..
+
+[ "$(protoc --version)" = "libprotoc 3.0.0" ] || {
+    echo "Your version of protoc '`protoc --version`' is too old. It must be 3.0.0"
+    exit 1
+}
+
+pushd protos
+
+export GENERATED_PATH="../generated"
+export PROTOS=$( find . -name '*.proto' | grep -v node_modules | grep -v vendor | grep -v script)
+
+echo "GENERATING INTO $GENERATED_PATH"
+
+echo "GO ----------------------------------------"
+../script/generate-go
+echo "PHP ---------------------------------------"
+../script/generate-php
+echo "JS ----------------------------------------"
+../script/generate-js
+
+popd

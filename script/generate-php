@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+OUT="$GENERATED_PATH/php/"
+NAMESPACE_PREFIX="VSCO.Protobufs"
+
+for PROTO in $PROTOS; do
+  ../plugins/datto/protobuf-php/protoc-gen-php.php --skip-imported -Dgeneric_services -Dsuffix=.pb.php -o $OUT -i . $PROTO
+done
+
+cd $OUT
+find . -iname "*.php" | xargs sed -i'' '/\/\/   Date:.*/d'

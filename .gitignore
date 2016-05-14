@@ -1,0 +1,5 @@
+generated/**
+protos/**/*.proto
+/node_modules/
+/vendor/
+script/bin

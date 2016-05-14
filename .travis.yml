@@ -1,0 +1,18 @@
+sudo: required
+language: go
+go: 1.6
+
+services:
+  - docker
+
+notifications:
+  email: false
+
+branches:
+  only:
+    - master
+
+install:
+  - docker pull twoims/grpc-gen:latest
+script:
+  - script/docker-generate
